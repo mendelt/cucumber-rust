@@ -10,7 +10,7 @@ macro_rules! cprint {
     ($fg:expr, $($arg:tt)*) => {{
         use termcolor::{ColorChoice, ColorSpec, StandardStream, WriteColor};
         use std::io::Write;
-        let mut stdout = StandardStream::stdout(ColorChoice::Always);
+        let mut stdout = StandardStream::stdout(ColorChoice::Auto);
         let _x = stdout.set_color(ColorSpec::new().set_fg(Some($fg)));
         let _x = write!(&mut stdout, $($arg)*);
         let _x = stdout.reset();
@@ -18,7 +18,7 @@ macro_rules! cprint {
     (bold $fg:expr, $($arg:tt)*) => {{
         use termcolor::{ColorChoice, ColorSpec, StandardStream, WriteColor};
         use std::io::Write;
-        let mut stdout = StandardStream::stdout(ColorChoice::Always);
+        let mut stdout = StandardStream::stdout(ColorChoice::Auto);
         let _x = stdout.set_color(ColorSpec::new().set_fg(Some($fg)).set_bold(true));
         let _x = write!(&mut stdout, $($arg)*);
         let _x = stdout.reset();
